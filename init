@@ -1,0 +1,8 @@
+curl -O http://www.asx.com.au/asx/research/ASXListedCompanies.csv
+mkdir -p data && cd data
+curl www.asxhistoricaldata.com | sed -n 's/.*href=\"\(.*\.zip\)\".*/\1/p' | xargs -n1 curl -O
+curl www.asxhistoricaldata.com/archive/ | sed -n 's/.*href=\"\(.*\.zip\)\".*/\1/p' | xargs -n1 curl -O
+for i in *.zip; do unzip -qoj $i; rm -f $i; done
+cd .. && mkdir -p asx200
+curl https://quoteapi.com/api/v4/symbol-lists/mjg200?appID=af5f4d73c1a54a33&pickFields=CNPCpHLVSiYo | node asx200.js > asx200/asx200.txt
+docker run -it --rm -v `pwd`:/app nagasuga/docker-hive
