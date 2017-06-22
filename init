@@ -7,3 +7,4 @@ curl https://quoteapi.com/api/v4/symbol-lists/mjg200?appID=af5f4d73c1a54a33&pick
 cd docker
 docker build -t hive .
 cd ..
+docker run --rm -v `pwd`:/app nagasuga/docker-hive bash -c 'cd /app && schematool -initSchema -dbType derby && hive -f sql-setup'

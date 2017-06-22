@@ -2,4 +2,4 @@ cd data
 curl www.asxhistoricaldata.com | sed -n 's/.*href=\"\(.*\.zip\)\".*/\1/p' | xargs -n1 curl -O
 for i in *.zip; do unzip -qoj $i; rm -f $i; done
 cd ..
-docker run --rm -v `pwd`:/app hive bash -c 'cd /app && hive -f sql-insert'
+docker run --rm -v `pwd`:/app nagasuga/docker-hive bash -c 'cd /app && hive -f sql-insert'
