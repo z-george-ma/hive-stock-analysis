@@ -1,4 +1,5 @@
-set today=year(current_date)*10000+month(current_date)*100+day(current_date);
+set today=20170616;
+//year(current_date)*10000+month(current_date)*100+day(current_date);
 set yr1=${hiveconf:today}-10000;
 set yr2=${hiveconf:today}-20000;
 
